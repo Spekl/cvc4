@@ -9,43 +9,36 @@ author:
 
 
 
-# a list of the named and versioned packages that must be installed before
-# installing 
-# depends:                               
-#   - package   : other-package   # represents a package that MUST be installed
-#     version   : 1.1.1
-#     platform  : all 
-#   - package   : other-package
-#     version   : 1.1.1
-#   - one-of:                     # at least one of these must be installed  
-#       - package: z3
-#         version: 1.1.2
-#         platform: all
-#       - package: why3
-#         version: 1.1.2
-#         platform: all
-
-#
-# assets that make up THIS package
-#
-
-# assets:
-#     - asset   : MAIN
-#       name    : my-asset
-#       url     : http://www.openjml.org/downloads/1.1.2.tar.gz  
-#       platform: all
+assets:
+    - asset   : MAIN
+      name    : CVC4 Solver Binary for Windows
+      url     : http://cvc4.cs.nyu.edu/builds/win32-opt/cvc4-1.4-win32-opt.exe
+      platform: windows
+    - asset   : MAIN
+      name    : CVC4 Solver Binary for Linux
+      url     : http://cvc4.cs.nyu.edu/builds/x86_64-linux-opt/cvc4-1.4-x86_64-linux-opt
+      platform: linux
+    - asset   : MAIN
+      name    : CVC4 Solver Distribution for OSX
+      url     : https://github.com/Spekl/static-files/releases/download/cvc4-1.4.0/cvc4-1.4.0-mac.tar.gz
+      platform: osx
         
-# assumes:
-#   - cmd: java --version # right now just support cmd -- maybe file exists?
-#     contains: 1.7
-#     message: "Sorry, but this package requires Java, version 1.7 or higher."
-
-
-# downloads everything to the .
-# install:
-#   - cmd: tar zxvf MAIN
-#     description: What this command does
-#     platform: all
-#   - cmd: tar zxvf $MAIN
-#     description: What this command does...
-#     platform: windows
+install:
+  - cmd: cp MAIN cvc4
+    description: Normalizing cvc4 Binary...
+    platform: windows
+  - cmd: cp MAIN cvc4
+    description: Normalizing cvc4 Binary...
+    platform: linux
+  - cmd: tar -zxvf MAIN
+    description: Extracting CVC4 Distribution...
+    platform: osx
+  - cmd: ln -s cvc4-1.4.0/bin/cvc4 cvc4.bin
+    description: Linking binary...
+    platform: osx
+  - cmd: mv cvc4.osx.sh cvc4
+    description: Adding OSX Shims...
+    platform: osx
+  - cmd: chmod +x cvc4
+    description: Setting Shim Executable...
+    platform: osx
