@@ -1,5 +1,5 @@
 name       : cvc4          # name of the package
-version    : 1.4.0-1       # version of the package
+version    : 1.4.0-2       # version of the package
 kind       : tool                     # one of tool or spec(s)
 description: CVC4 is an efficient open-source automatic theorem prover for satisfiability modulo theories (SMT) problems. 
 
